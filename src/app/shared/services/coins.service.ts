@@ -4,17 +4,18 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 
 @Injectable()
 export class CoinsService {
-  
+
   coins = `${environment.API}/front`
 
   constructor(private http: Http) { }
 
-  private extractData(response: Response) {
-    return response.json();
+  private extractData(res: Response) {
+    return res.json();
   }
 
   private handleError(error: any) {
@@ -23,7 +24,8 @@ export class CoinsService {
   }
 
   getAllCoins() {
-   
+
+
     return this.http.get(this.coins)
                     .map(this.extractData)
                     .catch(this.handleError)
