@@ -1,17 +1,26 @@
+<div class="col-sm-12">
+<span  *ngIf="!gridView" class="k-icon k-i-loading text-center text-white bg-dark" style="height: 1000px; width: 1000px; font-size: 100px;"></span>
 <kendo-grid 
+    *ngIf="gridView"
     [data]="gridView"
     [skip]="skip"
     [pageSize]="pageSize"
     [scrollable]="'virtual'"
     [rowHeight]="35"
-    [height]="700"
+    [height]="1000"
+    [resizable]="true"
     (pageChange)="pageChange($event)"
+    (sortChange)="sortChange($event)"
+    [sortable]="{ allowUnsort: allowUnsort, mode: 'single'}"
+    [sort]="sort"
     [navigable]="true"
+    [selectable]="true"
     >
-    <kendo-grid-column field="short" title="Name">
+    <kendo-grid-column [headerClass]="bg-dark" field="short" title="Name" [width]="10">
     </kendo-grid-column>
-    <kendo-grid-column field="price" title="Price">
+    <kendo-grid-column field="price" title="Price" [width]="10">
     </kendo-grid-column>
-    <kendo-grid-column field="mktcap" title="Market Cap">
+    <kendo-grid-column field="mktcap" title="Market Cap" [width]="70">
     </kendo-grid-column>
 </kendo-grid>
+</div>
