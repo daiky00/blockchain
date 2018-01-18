@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './containers/home/home.component';
 import { AboutComponent } from './containers/about/about.component';
 import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
+import { PageTitleComponent } from './components/page-title/page-title.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PageTitleComponent
   ],
   imports: [
     BrowserModule,
