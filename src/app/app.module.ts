@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Router dependencies 
 import { RouterModule } from '@angular/router';
@@ -16,9 +18,15 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
 // main app component
 import { AppComponent } from './app.component';
 
+// Kendo Components
+
+import { GridModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 // components
 import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
+import { GridAllCoinsComponent } from './components/grid-all-coins/grid-all-coins.component';
 
 
 @NgModule({
@@ -28,7 +36,8 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     HomeComponent,
     AboutComponent,
     PageNotFoundComponent,
-    PageTitleComponent
+    PageTitleComponent,
+    GridAllCoinsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +45,10 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
-
+    ),
+    GridModule,
+    InputsModule,
+    BrowserAnimationsModule
   ],
   providers: [CoinsService],
   bootstrap: [AppComponent]

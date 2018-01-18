@@ -1,0 +1,17 @@
+<kendo-grid 
+    [data]="gridView"
+    [skip]="skip"
+    [pageSize]="pageSize"
+    [scrollable]="'virtual'"
+    [rowHeight]="35"
+    [height]="700"
+    (pageChange)="pageChange($event)"
+    [navigable]="true"
+    >
+    <kendo-grid-column field="short" title="Name">
+    </kendo-grid-column>
+    <kendo-grid-column field="price" title="Price">
+    </kendo-grid-column>
+    <kendo-grid-column field="mktcap" title="Market Cap">
+    </kendo-grid-column>
+</kendo-grid>
