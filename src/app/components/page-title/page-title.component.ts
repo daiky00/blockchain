@@ -12,6 +12,7 @@ import 'rxjs/add/operator/mergeMap';
 })
 export class PageTitleComponent implements OnInit {
   title: void;
+  subTitle: void;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -29,6 +30,7 @@ export class PageTitleComponent implements OnInit {
       .mergeMap((route) => route.data)
       .subscribe((event) => {
          this.titleService.setTitle(this.title = event['title'])
+         this.titleService.setTitle(this.subTitle = event['subTitle'])
       }
     );
   }
