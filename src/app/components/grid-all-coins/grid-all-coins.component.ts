@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoinsService } from '../../shared/services/coins.service'
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult, PageChangeEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-grid-all-coins',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: './grid-all-coins.component.html',
   styleUrls: ['./grid-all-coins.component.scss']
 })
@@ -16,15 +16,26 @@ export class GridAllCoinsComponent implements OnInit {
   public pageSize = 100;
   public skip = 0;
   public sort: SortDescriptor[] = [{
-    field: 'ProductName',
-    dir: 'asc'
+    field: 'mktcap',
+    dir: 'desc'
   }];
 
 
-  constructor(private coinsService: CoinsService) { }
+  constructor(private coinsService: CoinsService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.buildCoinsData();
+  }
+
+  percentStatus(percent: number): SafeStyle {
+    let result;
+    if(percent > (0)) {
+      return result = "#28a745"
+    } if(percent < (0)) {
+      return result = "#dc3545"
+    }
+
+    return this.sanitizer.bypassSecurityTrustStyle(result);
   }
 
   pageChange(event: PageChangeEvent): void {
@@ -39,7 +50,6 @@ export class GridAllCoinsComponent implements OnInit {
 
   buildCoinsData() {
     this.coinsService.getAllCoins().subscribe((coins) => {
-      console.log(coins);
       this.gridData = coins;
       this.gridView = {
         data: orderBy(this.gridData.slice(this.skip, this.skip + this.pageSize), this.sort),
