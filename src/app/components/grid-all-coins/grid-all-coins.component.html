@@ -14,24 +14,29 @@
     [sort]="sort"
     [navigable]="true"
     [selectable]="true" >
+    <kendo-grid-column title="#" [width]="6">
+         <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+              {{rowIndex + 1}}
+         </ng-template>  
+    </kendo-grid-column>
     <kendo-grid-column field="short" title="Name" [width]="10">
-        <ng-template kendoGridCellTemplate let-coinItem let-rowIndex="rowIndex">
+        <ng-template kendoGridCellTemplate let-coinItem>
             {{coinItem.short}}
             <small class="text-primary d-block">{{coinItem.long}}</small>
         </ng-template>  
     </kendo-grid-column>
     <kendo-grid-column field="price" title="Price" [width]="10">
-        <ng-template kendoGridCellTemplate let-coinItem let-rowIndex="rowIndex">
+        <ng-template kendoGridCellTemplate let-coinItem>
             {{coinItem.price | currency: 'USD': 'true': '1.2-5' }}   
         </ng-template>  
     </kendo-grid-column>
     <kendo-grid-column field="mktcap" title="Market Cap" [width]="15">
-        <ng-template kendoGridCellTemplate let-coinItem let-rowIndex="rowIndex">
+        <ng-template kendoGridCellTemplate let-coinItem>
             {{coinItem.mktcap | currency: 'USD': 'true': '1.0-0'}}    
         </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="supply" title="Available Supply" [width]="55">
-        <ng-template kendoGridCellTemplate let-coinItem let-rowIndex="rowIndex">
+        <ng-template kendoGridCellTemplate let-coinItem>
             {{coinItem.supply | number}}    
         </ng-template>
     </kendo-grid-column>
