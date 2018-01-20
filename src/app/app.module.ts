@@ -8,8 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 
+// shared pipes
+import { TrimPipe } from './shared/pipes/trim.pipe';
+
 // shared services
 import { CoinsService } from './shared/services/coins.service';
+
 // containers
 import { HomeComponent } from './containers/home/home.component';
 import { AboutComponent } from './containers/about/about.component';
@@ -28,7 +32,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { GridAllCoinsComponent } from './components/grid-all-coins/grid-all-coins.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +40,8 @@ import { GridAllCoinsComponent } from './components/grid-all-coins/grid-all-coin
     AboutComponent,
     PageNotFoundComponent,
     PageTitleComponent,
-    GridAllCoinsComponent
+    GridAllCoinsComponent,
+    TrimPipe
   ],
   imports: [
     BrowserModule,
