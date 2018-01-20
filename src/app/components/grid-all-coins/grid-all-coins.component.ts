@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoinsService } from '../../shared/services/coins.service'
 import { GridDataResult, PageChangeEvent, RowClassArgs } from '@progress/kendo-angular-grid';
-import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
+import { SortDescriptor, orderBy, State, process } from '@progress/kendo-data-query';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
@@ -11,14 +11,16 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 })
 export class GridAllCoinsComponent implements OnInit {
 
-  public gridView: GridDataResult;
-  public gridData: any[];
-  public pageSize = 100;
-  public skip = 0;
-  public sort: SortDescriptor[] = [{
+  gridView:  GridDataResult;
+  sort: SortDescriptor[] = [{
     field: 'mktcap',
     dir: 'desc'
   }];
+  gridState: State = {
+    sort: this.sort,
+    skip: 0,
+    take: 100
+  };
 
 
   constructor(private coinsService: CoinsService, private sanitizer: DomSanitizer) { }
@@ -38,8 +40,12 @@ export class GridAllCoinsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustStyle(result);
   }
 
+  onStateChange(state: State) {
+    this.gridState = state;
+  }
+
   pageChange(event: PageChangeEvent): void {
-    this.skip = event.skip;
+    this.gridState.skip = event.skip;
     this.buildCoinsData();
   }
   
@@ -50,10 +56,10 @@ export class GridAllCoinsComponent implements OnInit {
 
   buildCoinsData() {
     this.coinsService.getAllCoins().subscribe((coins) => {
-      this.gridData = coins;
+
       this.gridView = {
-        data: orderBy(this.gridData.slice(this.skip, this.skip + this.pageSize), this.sort),
-        total: this.gridData.length
+        data: orderBy(coins.slice( this.gridState.skip, this.gridState.skip + this.gridState.take ),this.gridState.sort ),
+        total: coins.length
       }; 
     })
   }

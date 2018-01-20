@@ -24,8 +24,6 @@ export class CoinsService {
   }
 
   getAllCoins() {
-
-
     return this.http.get(this.coins)
                     .map(this.extractData)
                     .catch(this.handleError)

@@ -6,4 +6,10 @@
 
 body {
     background: $main-background;
+    font-family: 'Roboto', sans-serif;
+}
+
+.k-grid {
+    width: 100%;
+    max-width: 1110px;    
 }
