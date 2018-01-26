@@ -1,4 +1,4 @@
-<span  *ngIf="!gridView" class="k-icon k-i-loading text-center text-white bg-dark" style="height: 1000px; width: 1140px; font-size: 100px;"></span>
+<div  *ngIf="!gridView" class="k-icon k-i-loading text-center text-white bg-dark" style="height: 1000px; width: 1140px; font-size: 100px;"></div>
 <kendo-grid
     *ngIf="gridView"
     [data]="gridView"
@@ -26,16 +26,18 @@
             {{coinItem.short}}<small class="text-primary ml-2">{{coinItem.long}}</small>
         </ng-template>  
     </kendo-grid-column>
-    <kendo-grid-column field="perc" title="24h %" [width]="105">
-            <ng-template kendoGridCellTemplate let-coinItem>
+    <kendo-grid-column field="perc" title="24h %" [width]="108">
+        <ng-template kendoGridCellTemplate let-coinItem>
             <span class="whole-cell" [style.color]="percentStatus(coinItem.perc)">
-               {{coinItem.perc}} %    
-            </span> 
+               <strong>{{coinItem.perc}} %</strong>    
+            </span>
             </ng-template>
         </kendo-grid-column>
     <kendo-grid-column field="price" title="Price" [width]="110">
         <ng-template kendoGridCellTemplate let-coinItem>
-            {{coinItem.price | currency: 'USD': 'true': '1.2-5' }}   
+        <span class="whole-cell" [style.color]="percentStatus(coinItem.perc)">
+            {{coinItem.price | currency: 'USD': 'true': '1.2-5' }} 
+            </span>  
         </ng-template>  
     </kendo-grid-column>
     <kendo-grid-column field="mktcap" title="Market Cap" [width]="160">
@@ -43,10 +45,15 @@
             {{coinItem.mktcap | currency: 'USD': 'true': '1.0-0'}}    
         </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="supply" title="Available Supply">
+    <kendo-grid-column field="supply" title="Available Supply" [width]="160">
         <ng-template kendoGridCellTemplate let-coinItem>
             {{coinItem.supply | number}}    
         </ng-template>
     </kendo-grid-column>
+    <kendo-grid-column field="usdVolume" title="24 Hour Volume">
+            <ng-template kendoGridCellTemplate let-coinItem>
+                {{coinItem.usdVolume | number}}    
+            </ng-template>
+        </kendo-grid-column>
 </kendo-grid>
 

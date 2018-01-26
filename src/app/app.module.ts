@@ -4,6 +4,9 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//dependency of sparklin
+import 'hammerjs';
+
 // Router dependencies 
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
@@ -26,6 +29,7 @@ import { AppComponent } from './app.component';
 
 import { GridModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { ChartsModule } from '@progress/kendo-angular-charts';
 
 // components
 import { HeaderComponent } from './components/header/header.component';
@@ -51,6 +55,7 @@ import { GridAllCoinsComponent } from './components/grid-all-coins/grid-all-coin
       { enableTracing: true } // <-- debugging purposes only
     ),
     GridModule,
+    ChartsModule,
     InputsModule,
     BrowserAnimationsModule
   ],

@@ -10,7 +10,8 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class CoinsService {
 
-  coins = `${environment.API}/front`
+  API = environment.API;
+
 
   constructor(private http: Http) { }
 
@@ -24,7 +25,7 @@ export class CoinsService {
   }
 
   getAllCoins() {
-    return this.http.get(this.coins)
+    return this.http.get(`${this.API}/front`)
                     .map(this.extractData)
                     .catch(this.handleError)
   }

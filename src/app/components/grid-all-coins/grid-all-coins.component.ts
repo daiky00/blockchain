@@ -60,7 +60,7 @@ export class GridAllCoinsComponent implements OnInit {
       this.gridView = {
         data: orderBy(coins.slice( this.gridState.skip, this.gridState.skip + this.gridState.take ),this.gridState.sort ),
         total: coins.length
-      }; 
+      };
     })
   }
 
