@@ -8,6 +8,6 @@ export class TrimPipe implements PipeTransform {
     if (!value) {
       return '';
     }
-    return value.trim().replace(/\s/g,'');
+    return value.trim().replace(/\s/g, '');
   }
 }
