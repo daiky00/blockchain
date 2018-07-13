@@ -17,6 +17,8 @@
 *.launch
 .settings/
 *.sublime-workspace
+yarn-error.log
+yarn.lock
 
 # IDE - VSCode
 .vscode/*
